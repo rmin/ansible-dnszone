@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Add one A record
+      dnszone:
+        file: /vagrant/sample.zone
+        domain: mydomain.com
+        type: A
+        name: testing1
+        data: 192.168.1.1
+        ttl: 4800
+        relativize: true
+        state: present
+      register: debug_result
+
+    - debug: var=debug_result
